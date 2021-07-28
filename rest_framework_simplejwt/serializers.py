@@ -143,7 +143,7 @@ class TokenRefreshSlidingSerializer(serializers.Serializer):
 
 
 class TokenVerifySerializer(serializers.Serializer):
-    token = serializers.CharField(write_only=True)
+    token = serializers.CharField()
 
     def validate(self, attrs):
         token = UntypedToken(attrs['token'])
