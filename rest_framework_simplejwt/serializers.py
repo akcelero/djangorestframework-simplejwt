@@ -98,8 +98,8 @@ class TokenObtainSlidingSerializer(TokenObtainSerializer):
 
 
 class TokenRefreshSerializer(serializers.Serializer):
-    refresh = serializers.CharField()
-    access = serializers.ReadOnlyField()
+    refresh = serializers.CharField(read_only=True)
+    access = serializers.ReadOnlyField(write_only=True)
 
     def validate(self, attrs):
         refresh = RefreshToken(attrs['refresh'])
@@ -125,7 +125,7 @@ class TokenRefreshSerializer(serializers.Serializer):
 
 
 class TokenRefreshSlidingSerializer(serializers.Serializer):
-    token = serializers.CharField()
+    token = serializers.CharField(read_only=True)
 
     def validate(self, attrs):
         token = SlidingToken(attrs['token'])
@@ -141,7 +141,7 @@ class TokenRefreshSlidingSerializer(serializers.Serializer):
 
 
 class TokenVerifySerializer(serializers.Serializer):
-    token = serializers.CharField()
+    token = serializers.CharField(write_only=True)
 
     def validate(self, attrs):
         token = UntypedToken(attrs['token'])
