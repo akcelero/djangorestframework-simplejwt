@@ -80,7 +80,7 @@ class TokenObtainPairSerializer(TokenObtainSerializer):
 
 
 class TokenObtainSlidingSerializer(TokenObtainSerializer):
-    token = serializers.ReadOnlyField()
+    token = serializers.CharField()
 
     @classmethod
     def get_token(cls, user):
@@ -127,7 +127,7 @@ class TokenRefreshSerializer(serializers.Serializer):
 
 
 class TokenRefreshSlidingSerializer(serializers.Serializer):
-    token = serializers.ReadOnlyField()
+    token = serializers.CharField()
 
     def validate(self, attrs):
         token = SlidingToken(attrs['token'])
