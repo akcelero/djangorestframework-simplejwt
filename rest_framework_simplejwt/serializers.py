@@ -22,8 +22,8 @@ class PasswordField(serializers.CharField):
 
 
 class TokenObtainSerializer(serializers.Serializer):
-    refresh = serializers.CharField(read_only=True)
-    access = serializers.CharField(read_only=True)
+    refresh = serializers.ReadOnlyField()
+    access = serializers.ReadOnlyField()
     username_field = get_user_model().USERNAME_FIELD
 
     default_error_messages = {
@@ -98,8 +98,8 @@ class TokenObtainSlidingSerializer(TokenObtainSerializer):
 
 
 class TokenRefreshSerializer(serializers.Serializer):
-    refresh = serializers.CharField()
-    access = serializers.ReadOnlyField(write_only=True)
+    refresh = serializers.CharField(write_only=True)
+    access = serializers.ReadOnlyField()
 
     def validate(self, attrs):
         refresh = RefreshToken(attrs['refresh'])
