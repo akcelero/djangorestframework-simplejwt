@@ -80,7 +80,7 @@ class TokenObtainPairSerializer(TokenObtainSerializer):
 
 
 class TokenObtainSlidingSerializer(TokenObtainSerializer):
-    token = serializers.CharField()
+    token = serializers.SerializerMethodField()
 
     @classmethod
     def get_token(cls, user):
